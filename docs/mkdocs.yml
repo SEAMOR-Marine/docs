@@ -1,0 +1,32 @@
+site_name: Documentation
+site_url: #"https://waterlinked.github.io"
+repo_url: #https://github.com/waterlinked/waterlinked.github.io
+theme:
+  name: readthedocs
+  theme_dir: #docstheme/material
+  logo: #img/waterlinked_logo.png
+  favicon: #img/favicon_water_linked.ico
+  palette:
+    accent: blue
+  font:
+    text: Open Sans
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/SEAMOR-Marine
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/seamormarine/
+    - icon: fontawesome/brands/youtube
+      link: http://www.youtube.com/@seamormarineltd.6096
+
+markdown_extensions:
+  - markdown.extensions.admonition
+  #  - markdown.extensions.codehilite(guess_lang=false)
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+ # - pymdownx.superfences
+  #- pymdownx.details
+
+extra_css:
+  - css/extra.css
