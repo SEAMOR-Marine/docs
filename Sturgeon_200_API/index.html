@@ -811,38 +811,46 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <table>
 <thead>
 <tr>
-<th>Description</th>
+<th>Title</th>
 <th>Exception Code</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Illegal Function</td>
 <td>0x01</td>
+<td>The Server does not support requested function</td>
 </tr>
 <tr>
 <td>Illegal Data Address</td>
 <td>0x02</td>
+<td>The data address not valid for requested operation</td>
 </tr>
 <tr>
 <td>Illegal Data Value</td>
 <td>0x03</td>
+<td>The data value not valid for requested operation</td>
 </tr>
 <tr>
-<td>Server failure</td>
+<td>Server Failure</td>
 <td>0x04</td>
+<td>An unrecoverable failure occured while performing requested operation</td>
 </tr>
 <tr>
 <td>ACK</td>
 <td>0x05</td>
+<td>The Server has accepted the request, some duration of time should be expected before complete</td>
 </tr>
 <tr>
 <td>Server Busy</td>
 <td>0x06</td>
+<td>The Server is currently busy processing a prior request</td>
 </tr>
 <tr>
 <td>NACK</td>
 <td>0x07</td>
+<td>The Server cannot perform the requested operation</td>
 </tr>
 </tbody>
 </table>
