@@ -1,1 +1,1 @@
-![SEAMOR](img/Seamor_Logo-01_RGB_Colour-3200px.png)
+![SEAMOR](img/Seamor_Logo-01_RGB_KO-3200px.png)

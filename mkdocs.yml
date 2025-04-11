@@ -1,12 +1,14 @@
 site_name: Documentation
-site_url: #"https://waterlinked.github.io"
-repo_url: #https://github.com/waterlinked/waterlinked.github.io
+site_url: "https://seamor-marine.github.io/docs"
+repo_url: https://github.com/SEAMOR-Marine/docs
 theme:
-  name: readthedocs
-  theme_dir: #docstheme/material
-  logo: #img/waterlinked_logo.png
-  favicon: #img/favicon_water_linked.ico
+  name: material
+  theme_dir: docstheme/material
+  logo: img/Seamor_Logo-01_RGB_Colour-3200px.png
+  favicon: img/favicon.ico
   palette:
+    scheme: slate
+    primary: amber
     accent: blue
   font:
     text: Open Sans
@@ -18,6 +20,8 @@ extra:
       link: https://www.facebook.com/seamormarine/
     - icon: fontawesome/brands/youtube
       link: http://www.youtube.com/@seamormarineltd.6096
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/seamormarine/
 
 markdown_extensions:
   - markdown.extensions.admonition
@@ -25,8 +29,7 @@ markdown_extensions:
   - markdown.extensions.def_list
   - markdown.extensions.footnotes
   - markdown.extensions.meta
- # - pymdownx.superfences
-  #- pymdownx.details
-
-extra_css:
-  - css/extra.css
+  - pymdownx.superfences
+  - pymdownx.details
+  
+copyright: © SEAMOR Marine Ltd. 2025

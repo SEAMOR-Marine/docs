@@ -1,7 +1,7 @@
 <!--Sturgeon 200 API-->
 
 
-![SEAMOR](img/Seamor_Logo-01_RGB_Colour-3200px.png)
+![SEAMOR](img/Seamor_Logo-01_RGB_KO-3200px.png)
 
 # Sturgeon 200 Thruster API
 _Revision 1.1_
@@ -19,10 +19,10 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 
 The client is the network device that initiates all communication, typically a processor that will also communicate on other networks. 
 
-!!! Important  
+!!! Warning  
 	Only one Client is allowed per network
 
-<!-- blank line between Important and note-->
+<!-- blank line between Warning and note-->
 
 !!! NOTE 
 	Client is referred to as Master in Legacy MODBUS documentation
@@ -31,10 +31,10 @@ The client is the network device that initiates all communication, typically a p
 
 A Server is a network device that responds to requests from a Client. Typically end node devices on the network.
 
-!!! Important 
+!!! Warning 
 	Maximum 63 Servers on a network
 
-<!-- blank line between Important and note-->
+<!-- blank line between Warning and note-->
 
 !!! NOTE 
 	Server is referred to as Slave in Legacy MODBUS documentation. Slave ID is used in this document to identify Servers. 
@@ -99,7 +99,7 @@ The unique 8-bit identifier for individual Servers. The configured device identi
 
 Slave ID 0x00 is reserved to indicate Broadcast Message (See Client Broadcast Definition). 
 
-!!! Important 
+!!! Warning 
 	The default Slave ID is 0xFF before receiving a Write Request setting the Slave ID. 
 
 #### 3.1.2.2 Function ID
@@ -137,7 +137,7 @@ The 16-bit Cyclic Redundancy Check (CRC) value of frame. Split into Most Signifi
 
 Standard MODBUS CRC-16-ANSI (CRC-16-IBM) is used with algebraic polynomial 0xA001 (reverse of 0x8005). 
 
-!!! Important 
+!!! Warning 
 	Sent in standard MODBUS little-endian format (CRC LSB first, CRC MSB second)
 
 
@@ -150,10 +150,10 @@ Broadcast Messaging allows for simultaneous communication with all Servers on th
 !!! NOTE 
 	Servers do not respond to Broadcast Messages
 
-<!--blank space to ensure break between note and important-->
+<!--blank space to ensure break between note and Warning-->
 
 
-!!! Important 
+!!! Warning 
 	The maximum Broadcast Message length is 24 bytes
 
 #### 3.2.1 Frame Layout
@@ -165,36 +165,36 @@ Broadcast Messaging allows for simultaneous communication with all Servers on th
 
 #### 3.2.2 Byte Definitions
 
-#### 3.2.2.1 Slave ID
+##### 3.2.2.1 Slave ID
 The unique 8-bit identifier for individual Servers, configured device identifier valid in range of 0x01-0x3F (0x40-0xFE invalid, 0xFF indicates unconfigured).
 
 !!! NOTE 
      Byte 1 in the frame is Slave ID 0x00 indicating a Broadcast Message, all other Slave ID used in frame refer to specific Server
 
-#### 3.2.2.2 Function ID 
+##### 3.2.2.2 Function ID 
 The unique 8-bit identifier to represent operation requested of the Server. 
 
-!!! Important 
+!!! Warning 
 	Only supported Broadcast Message function code is Write Read/Write Register: 0x06
 
-#### 3.2.2.3 Register Address
+##### 3.2.2.3 Register Address
 The 16-bit register address for target operation, offset from the database start register. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).
 
-#### 3.2.2.4 Broadcast ID
+##### 3.2.2.4 Broadcast ID
 The unique 8-bit identifier to indicate frame structure.
 
 !!! NOTE 
      Currently only Broadcast ID 0x01 is supported
 
-#### 3.2.2.5 Data Payload 
+##### 3.2.2.5 Data Payload 
 The number of bytes and function specific to Broadcast ID (See Broadcast Payload Structure Definition)
 
-#### 3.2.2.6 CRC
+##### 3.2.2.6 CRC
 The 16-bit Cyclic Redundancy Check (CRC) value of frame. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB). 
 
 Standard MODBUS CRC-16-ANSI (CRC-16-IBM) is used with algebraic polynomial 0xA001 (reverse of 0x8005). 
 
-!!! Important 
+!!! Warning 
 	Sent in standard MODBUS little-endian format (CRC LSB first, CRC MSB second)
 
 #### 3.2.3 Broadcast Payload Structure
@@ -210,11 +210,11 @@ Used to broadcast direction and duty cycle to multiple Servers. Valid for 1-8 Se
 |---------------------------|------------------------|-----------------|------------------------|------------------|------------------------|---|------------------|------------------------|
 | Name                      |  Payload # Bytes     | Payload Byte 1A |  Payload Byte 1B       |  Payload Byte 2A |  Payload Byte 2B       |...|  Payload Byte 8A |  Payload Byte 8B       |
 
-#### 3.2.3.1.1 Payload Number of Bytes
+###### 3.2.3.1.1 Payload Number of Bytes
 
 Number of payload bytes in the frame.
 
-#### 3.2.3.1.2 Payload Byte xA
+###### 3.2.3.1.2 Payload Byte xA
 
 |Bits       | 0-1                                                                                        | 2-7                    |
 |-----------|--------------------------------------------------------------------------------------------|------------------------|
@@ -228,7 +228,7 @@ Number of payload bytes in the frame.
 |Function   |Thruster Duty Cycle    |
 |Description| 0\.5% / bit           |
 
-!!! Important 
+!!! Warning 
 	Maximum Thruster Duty Cycle is 100% (0xC8)
 
 ### 3.3 Exception Responses
@@ -314,7 +314,7 @@ Response from Server to the Client:
 |-----------|--------------|--------------|---------------|---------------|---------|---------|
 | 0x10      | 0x04         | 0x02         | 0x04          | 0x40          | 0x46    | 0x03    |
 
-Slave ID 16 responds current 0.2A and volatge 16V.
+Slave ID 16 responds current 0.2A and voltage 16V.
 
 
 ### 5.2	Read Request - Example 2
@@ -381,7 +381,7 @@ Response from Server to the Client:
 |----------|-------------|----------------------|----------------------|----------|----------|---------|---------|
 | 0x02     | 0x06        | 0x00                 | 0x00                 | 0x00     | 0x02     | 0x08    | 0x38    |
 
-!!! Important 
+!!! Warning 
 	Server responds to write request for target Slave ID using updated Slave ID
 
 ### 5.6 Broadcast - Example 1
@@ -418,7 +418,7 @@ Broadcast Message:
 
 The Client is requesting to read register address 0x00A0 of the Server with Slave ID 220.
 
-!!! Important 
+!!! Warning 
 	Register address 0x00A0 is invalid
 
 | Slave ID | Function ID | Register Address MSB | Register Address LSB  | # Registers MSB | # Registers LSB | CRC LSB | CRC MSB |

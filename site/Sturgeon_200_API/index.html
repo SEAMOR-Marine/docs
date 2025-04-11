@@ -1,181 +1,1400 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Sturgeon 200 API - Documentation</title>
-    <link rel="stylesheet" href="../css/theme.css" />
-    <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-        <link href="../css/extra.css" rel="stylesheet" />
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-      <script>
-        // Current page data
-        var mkdocs_page_name = "Sturgeon 200 API";
-        var mkdocs_page_input_path = "Sturgeon_200_API.md";
-        var mkdocs_page_url = null;
-      </script>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://seamor-marine.github.io/docs/Sturgeon_200_API/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+      <link rel="icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
     
-    <!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
-    <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
-</head>
+    
+      
+        <title>Sturgeon 200 API - Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
 
-<body class="wy-body-for-nav" role="document">
 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Documentation
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                </li>
-              </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">Sturgeon 200 API</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#1-introduction">1. Introduction</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#11-node-types">1.1 Node Types</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#111-client">1.1.1 Client</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#111-server">1.1.1 Server</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#2-network-requirements">2. Network Requirements</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#21-communication-port-settings">2.1 Communication Port settings</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#22-message-gap">2.2 Message Gap</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#23-timeout">2.3 Timeout</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#3-message-types">3. Message Types</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#31-request-response">3.1 Request/ Response</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#311-frame-layouts">3.1.1 Frame Layouts</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#312-byte-definitions">3.1.2 Byte Definitions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3121-slave-id">3.1.2.1 Slave ID</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3122-function-id">3.1.2.2 Function ID</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3123-register-address">3.1.2.3 Register Address</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3124-number-of-registers">3.1.2.4 Number Of Registers</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3125-number-of-bytes-read">3.1.2.5 Number of Bytes Read</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3126-data">3.1.2.6 Data</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3127-crc">3.1.2.7 CRC</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#32-client-broadcast">3.2 Client Broadcast</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#321-frame-layout">3.2.1 Frame Layout</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#322-byte-definitions">3.2.2 Byte Definitions</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3221-slave-id">3.2.2.1 Slave ID</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3222-function-id">3.2.2.2 Function ID</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3223-register-address">3.2.2.3 Register Address</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3224-broadcast-id">3.2.2.4 Broadcast ID</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3225-data-payload">3.2.2.5 Data Payload</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#3226-crc">3.2.2.6 CRC</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#323-broadcast-payload-structure">3.2.3 Broadcast Payload Structure</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#33-exception-responses">3.3 Exception Responses</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#4-register-addresses">4 Register Addresses</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#41-readwrite-registers">4.1 Read/Write Registers</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#42-read-only-register-addresses">4.2 Read-Only Register Addresses</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#43-exception-response-codes">4.3 Exception Response Codes</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#5-example-message-exchanges">5 Example Message Exchanges</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#51-read-request-example-1">5.1 Read Request - Example 1</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#52-read-request-example-2">5.2 Read Request - Example 2</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#53-read-request-example-3">5.3 Read Request - Example 3</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#54-write-request-example-1">5.4 Write Request - Example 1</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#55-write-request-example-2">5.5 Write Request - Example 2</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#56-broadcast-example-1">5.6 Broadcast - Example 1</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#57-exception-response-example-1">5.7 Exception Response - Example 1</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
-                </li>
-              </ul>
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sturgeon-200-thruster-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
+      
+  <img src="../img/Seamor_Logo-01_RGB_Colour-3200px.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sturgeon 200 API
+            
+          </span>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Documentation</a>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
         
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
       </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Sturgeon 200 API</li>
-    <li class="wy-breadcrumbs-aside">
-    </li>
-  </ul>
-  <hr/>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SEAMOR-Marine/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
               
-                <!--Sturgeon 200 API-->
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
 
-<p><img alt="SEAMOR" src="../img/Seamor_Logo-01_RGB_Colour-3200px.png" /></p>
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
+      
+  <img src="../img/Seamor_Logo-01_RGB_Colour-3200px.png" alt="logo">
+
+    </a>
+    Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SEAMOR-Marine/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Sturgeon 200 API
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sturgeon 200 API
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-node-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Node Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Node Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1 Client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1 Server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-network-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Network Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Network Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-communication-port-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Communication Port settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-message-gap" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Message Gap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Timeout
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-message-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Message Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Message Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-request-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Request/ Response
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Request/ Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-frame-layouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1 Frame Layouts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.1 Frame Layouts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3111-client-read-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1.1 Client - Read Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3112-server-read-reponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1.2 Server - Read Reponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3113-client-write-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1.3 Client - Write Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3114-server-write-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1.4 Server - Write Response
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-byte-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2 Byte Definitions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3121-slave-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.1 Slave ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3122-function-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.2 Function ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3123-register-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.3 Register Address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3124-number-of-registers" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.4 Number Of Registers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3125-number-of-bytes-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.5 Number of Bytes Read
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3126-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.6 Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3127-crc" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.7 CRC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-client-broadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Client Broadcast
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Client Broadcast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-frame-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 Frame Layout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-byte-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2 Byte Definitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2.2 Byte Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3221-slave-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.1 Slave ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3222-function-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.2 Function ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3223-register-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.3 Register Address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3224-broadcast-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.4 Broadcast ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3225-data-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.5 Data Payload
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3226-crc" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.6 CRC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-broadcast-payload-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3 Broadcast Payload Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2.3 Broadcast Payload Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3231-broadcast-id-0x01" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3.1 Broadcast ID 0x01
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2.3.1 Broadcast ID 0x01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32311-payload-number-of-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3.1.1 Payload Number of Bytes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32312-payload-byte-xa" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3.1.2 Payload Byte xA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32313-payload-byte-xb" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3.1.3 Payload Byte xB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-exception-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Exception Responses
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-register-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Register Addresses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Register Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-readwrite-registers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Read/Write Registers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-read-only-register-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Read-Only Register Addresses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-exception-response-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Exception Response Codes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-example-message-exchanges" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Example Message Exchanges
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Example Message Exchanges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-read-request-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Read Request - Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-read-request-example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Read Request - Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-read-request-example-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Read Request - Example 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-write-request-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Write Request - Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-write-request-example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Write Request - Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-broadcast-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.6 Broadcast - Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-exception-response-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.7 Exception Response - Example 1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-node-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Node Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Node Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1 Client
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1 Server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-network-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Network Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Network Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-communication-port-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Communication Port settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-message-gap" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Message Gap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Timeout
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-message-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Message Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Message Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-request-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Request/ Response
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 Request/ Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-frame-layouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1 Frame Layouts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1.1 Frame Layouts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3111-client-read-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1.1 Client - Read Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3112-server-read-reponse" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1.2 Server - Read Reponse
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3113-client-write-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1.3 Client - Write Request
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3114-server-write-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1.4 Server - Write Response
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-byte-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2 Byte Definitions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3121-slave-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.1 Slave ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3122-function-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.2 Function ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3123-register-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.3 Register Address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3124-number-of-registers" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.4 Number Of Registers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3125-number-of-bytes-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.5 Number of Bytes Read
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3126-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.6 Data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3127-crc" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2.7 CRC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-client-broadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Client Broadcast
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 Client Broadcast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-frame-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 Frame Layout
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-byte-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2 Byte Definitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2.2 Byte Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3221-slave-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.1 Slave ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3222-function-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.2 Function ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3223-register-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.3 Register Address
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3224-broadcast-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.4 Broadcast ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3225-data-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.5 Data Payload
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3226-crc" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2.6 CRC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-broadcast-payload-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3 Broadcast Payload Structure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2.3 Broadcast Payload Structure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3231-broadcast-id-0x01" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3.1 Broadcast ID 0x01
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2.3.1 Broadcast ID 0x01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32311-payload-number-of-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3.1.1 Payload Number of Bytes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32312-payload-byte-xa" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3.1.2 Payload Byte xA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32313-payload-byte-xb" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3.1.3 Payload Byte xB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-exception-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Exception Responses
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-register-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Register Addresses
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Register Addresses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-readwrite-registers" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Read/Write Registers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-read-only-register-addresses" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Read-Only Register Addresses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-exception-response-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Exception Response Codes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-example-message-exchanges" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Example Message Exchanges
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Example Message Exchanges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-read-request-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Read Request - Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-read-request-example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Read Request - Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-read-request-example-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Read Request - Example 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-write-request-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4 Write Request - Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-write-request-example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5 Write Request - Example 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-broadcast-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.6 Broadcast - Example 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-exception-response-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.7 Exception Response - Example 1
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<!--Sturgeon 200 API-->
+
+<p><img alt="SEAMOR" src="../img/Seamor_Logo-01_RGB_KO-3200px.png" /></p>
 <h1 id="sturgeon-200-thruster-api">Sturgeon 200 Thruster API</h1>
 <p><em>Revision 1.1</em></p>
 <h2 id="1-introduction">1. Introduction</h2>
@@ -185,11 +1404,11 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <h3 id="11-node-types">1.1 Node Types</h3>
 <h4 id="111-client">1.1.1 Client</h4>
 <p>The client is the network device that initiates all communication, typically a processor that will also communicate on other networks. </p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Only one Client is allowed per network</p>
 </div>
-<!-- blank line between Important and note-->
+<!-- blank line between Warning and note-->
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -197,11 +1416,11 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </div>
 <h4 id="111-server">1.1.1 Server</h4>
 <p>A Server is a network device that responds to requests from a Client. Typically end node devices on the network.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Maximum 63 Servers on a network</p>
 </div>
-<!-- blank line between Important and note-->
+<!-- blank line between Warning and note-->
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -212,8 +1431,8 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>Setting</th>
+<th>Value</th>
 </tr>
 </thead>
 <tbody>
@@ -363,8 +1582,8 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <h4 id="3121-slave-id">3.1.2.1 Slave ID</h4>
 <p>The unique 8-bit identifier for individual Servers. The configured device identifier valid in range of 0x01-0x3F (0x40-0xFE invalid, 0xFF indicates unconfigured).</p>
 <p>Slave ID 0x00 is reserved to indicate Broadcast Message (See Client Broadcast Definition). </p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>The default Slave ID is 0xFF before receiving a Write Request setting the Slave ID. </p>
 </div>
 <h4 id="3122-function-id">3.1.2.2 Function ID</h4>
@@ -414,8 +1633,8 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <h4 id="3127-crc">3.1.2.7 CRC</h4>
 <p>The 16-bit Cyclic Redundancy Check (CRC) value of frame. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).</p>
 <p>Standard MODBUS CRC-16-ANSI (CRC-16-IBM) is used with algebraic polynomial 0xA001 (reverse of 0x8005). </p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Sent in standard MODBUS little-endian format (CRC LSB first, CRC MSB second)</p>
 </div>
 <h3 id="32-client-broadcast">3.2 Client Broadcast</h3>
@@ -425,10 +1644,10 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <p class="admonition-title">Note</p>
 <p>Servers do not respond to Broadcast Messages</p>
 </div>
-<!--blank space to ensure break between note and important-->
+<!--blank space to ensure break between note and Warning-->
 
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>The maximum Broadcast Message length is 24 bytes</p>
 </div>
 <h4 id="321-frame-layout">3.2.1 Frame Layout</h4>
@@ -461,33 +1680,33 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </tbody>
 </table>
 <h4 id="322-byte-definitions">3.2.2 Byte Definitions</h4>
-<h4 id="3221-slave-id">3.2.2.1 Slave ID</h4>
+<h5 id="3221-slave-id">3.2.2.1 Slave ID</h5>
 <p>The unique 8-bit identifier for individual Servers, configured device identifier valid in range of 0x01-0x3F (0x40-0xFE invalid, 0xFF indicates unconfigured).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Byte 1 in the frame is Slave ID 0x00 indicating a Broadcast Message, all other Slave ID used in frame refer to specific Server</p>
 </div>
-<h4 id="3222-function-id">3.2.2.2 Function ID</h4>
+<h5 id="3222-function-id">3.2.2.2 Function ID</h5>
 <p>The unique 8-bit identifier to represent operation requested of the Server. </p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Only supported Broadcast Message function code is Write Read/Write Register: 0x06</p>
 </div>
-<h4 id="3223-register-address">3.2.2.3 Register Address</h4>
+<h5 id="3223-register-address">3.2.2.3 Register Address</h5>
 <p>The 16-bit register address for target operation, offset from the database start register. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).</p>
-<h4 id="3224-broadcast-id">3.2.2.4 Broadcast ID</h4>
+<h5 id="3224-broadcast-id">3.2.2.4 Broadcast ID</h5>
 <p>The unique 8-bit identifier to indicate frame structure.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Currently only Broadcast ID 0x01 is supported</p>
 </div>
-<h4 id="3225-data-payload">3.2.2.5 Data Payload</h4>
+<h5 id="3225-data-payload">3.2.2.5 Data Payload</h5>
 <p>The number of bytes and function specific to Broadcast ID (See Broadcast Payload Structure Definition)</p>
-<h4 id="3226-crc">3.2.2.6 CRC</h4>
+<h5 id="3226-crc">3.2.2.6 CRC</h5>
 <p>The 16-bit Cyclic Redundancy Check (CRC) value of frame. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB). </p>
 <p>Standard MODBUS CRC-16-ANSI (CRC-16-IBM) is used with algebraic polynomial 0xA001 (reverse of 0x8005). </p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Sent in standard MODBUS little-endian format (CRC LSB first, CRC MSB second)</p>
 </div>
 <h4 id="323-broadcast-payload-structure">3.2.3 Broadcast Payload Structure</h4>
@@ -525,9 +1744,9 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </tr>
 </tbody>
 </table>
-<h5 id="32311-payload-number-of-bytes">3.2.3.1.1 Payload Number of Bytes</h5>
+<h6 id="32311-payload-number-of-bytes">3.2.3.1.1 Payload Number of Bytes</h6>
 <p>Number of payload bytes in the frame.</p>
-<h5 id="32312-payload-byte-xa">3.2.3.1.2 Payload Byte xA</h5>
+<h6 id="32312-payload-byte-xa">3.2.3.1.2 Payload Byte xA</h6>
 <table>
 <thead>
 <tr>
@@ -549,7 +1768,7 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </tr>
 </tbody>
 </table>
-<h5 id="32313-payload-byte-xb">3.2.3.1.3 Payload Byte xB</h5>
+<h4 id="32313-payload-byte-xb">3.2.3.1.3 Payload Byte xB</h4>
 <table>
 <thead>
 <tr>
@@ -568,8 +1787,8 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </tr>
 </tbody>
 </table>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Maximum Thruster Duty Cycle is 100% (0xC8)</p>
 </div>
 <h3 id="33-exception-responses">3.3 Exception Responses</h3>
@@ -577,20 +1796,22 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <table>
 <thead>
 <tr>
-<th>Slave ID</th>
-<th>Function ID (Function ID | 0x80)</th>
-<th>Exception Code</th>
-<th>CRC LSB</th>
-<th>CRC MSB</th>
+<th>Byte #</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Name</td>
+<td>Slave ID</td>
+<td>Function ID (Function ID | 0x80)</td>
+<td>Exception Code</td>
+<td>CRC LSB</td>
+<td>CRC MSB</td>
 </tr>
 </tbody>
 </table>
@@ -803,38 +2024,46 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <table>
 <thead>
 <tr>
-<th>Description</th>
+<th>Title</th>
 <th>Exception Code</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Illegal Function</td>
 <td>0x01</td>
+<td>The Server does not support requested function</td>
 </tr>
 <tr>
 <td>Illegal Data Address</td>
 <td>0x02</td>
+<td>The data address not valid for requested operation</td>
 </tr>
 <tr>
 <td>Illegal Data Value</td>
 <td>0x03</td>
+<td>The data value not valid for requested operation</td>
 </tr>
 <tr>
-<td>Server failure</td>
+<td>Server Failure</td>
 <td>0x04</td>
+<td>An unrecoverable failure occured while performing requested operation</td>
 </tr>
 <tr>
 <td>ACK</td>
 <td>0x05</td>
+<td>The Server has accepted the request, some duration of time should be expected before complete</td>
 </tr>
 <tr>
 <td>Server Busy</td>
 <td>0x06</td>
+<td>The Server is currently busy processing a prior request</td>
 </tr>
 <tr>
 <td>NACK</td>
 <td>0x07</td>
+<td>The Server cannot perform the requested operation</td>
 </tr>
 </tbody>
 </table>
@@ -892,7 +2121,7 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </tr>
 </tbody>
 </table>
-<p>Slave ID 16 responds current 0.2A and volatge 16V.</p>
+<p>Slave ID 16 responds current 0.2A and voltage 16V.</p>
 <h3 id="52-read-request-example-2">5.2 Read Request - Example 2</h3>
 <p>Read Request for Duty Cycle and Direction from Slave ID 16:</p>
 <table>
@@ -1116,8 +2345,8 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </tr>
 </tbody>
 </table>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Server responds to write request for target Slave ID using updated Slave ID</p>
 </div>
 <h3 id="56-broadcast-example-1">5.6 Broadcast - Example 1</h3>
@@ -1240,8 +2469,8 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <p>No network response from Servers.</p>
 <h3 id="57-exception-response-example-1">5.7 Exception Response - Example 1</h3>
 <p>The Client is requesting to read register address 0x00A0 of the Server with Slave ID 220.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Register address 0x00A0 is invalid</p>
 </div>
 <table>
@@ -1299,48 +2528,111 @@ Terminology consistent with MODBUS standards is used throughout this document. P
    <br>
     &copy; 2025 SEAMOR Marine Ltd.
 </p>
-              
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
             </div>
-          </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-  </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
           
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-  </span>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © SEAMOR Marine Ltd. 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
-        jQuery(function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        });
-    </script>
-
-</body>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/SEAMOR-Marine" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.facebook.com/seamormarine/" target="_blank" rel="noopener" title="www.facebook.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256c0 120 82.7 220.8 194.2 248.5V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287v175.9C413.8 494.8 512 386.9 512 256"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="http://www.youtube.com/@seamormarineltd.6096" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/seamormarine/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
 </html>
