@@ -113,6 +113,12 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#323-broadcast-payload-structure">3.2.3 Broadcast Payload Structure</a>
     </li>
+    <li class="toctree-l4"><a class="reference internal" href="#32311-payload-number-of-bytes">3.2.3.1.1 Payload Number of Bytes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#32312-payload-byte-xa">3.2.3.1.2 Payload Byte xA</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#32313-payload-byte-xb">3.2.3.1.3 Payload Byte xB</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#33-exception-responses">3.3 Exception Responses</a>
@@ -525,9 +531,9 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </tr>
 </tbody>
 </table>
-<h5 id="32311-payload-number-of-bytes">3.2.3.1.1 Payload Number of Bytes</h5>
+<h4 id="32311-payload-number-of-bytes">3.2.3.1.1 Payload Number of Bytes</h4>
 <p>Number of payload bytes in the frame.</p>
-<h5 id="32312-payload-byte-xa">3.2.3.1.2 Payload Byte xA</h5>
+<h4 id="32312-payload-byte-xa">3.2.3.1.2 Payload Byte xA</h4>
 <table>
 <thead>
 <tr>
@@ -549,7 +555,7 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 </tr>
 </tbody>
 </table>
-<h5 id="32313-payload-byte-xb">3.2.3.1.3 Payload Byte xB</h5>
+<h4 id="32313-payload-byte-xb">3.2.3.1.3 Payload Byte xB</h4>
 <table>
 <thead>
 <tr>
@@ -577,20 +583,22 @@ Terminology consistent with MODBUS standards is used throughout this document. P
 <table>
 <thead>
 <tr>
-<th>Slave ID</th>
-<th>Function ID (Function ID | 0x80)</th>
-<th>Exception Code</th>
-<th>CRC LSB</th>
-<th>CRC MSB</th>
+<th>Byte #</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>Name</td>
+<td>Slave ID</td>
+<td>Function ID (Function ID | 0x80)</td>
+<td>Exception Code</td>
+<td>CRC LSB</td>
+<td>CRC MSB</td>
 </tr>
 </tbody>
 </table>
