@@ -43,7 +43,7 @@ A Server is a network device that responds to requests from a Client. Typically 
 
 ### 2.1 Communication Port settings
 
-|                 |             |
+|  Setting        | Value       |
 |-----------------|-------------|
 | Baud Rate       |   115200	|
 | Start Bit       | 1			|
@@ -210,18 +210,18 @@ Used to broadcast direction and duty cycle to multiple Servers. Valid for 1-8 Se
 |---------------------------|------------------------|-----------------|------------------------|------------------|------------------------|---|------------------|------------------------|
 | Name                      |  Payload # Bytes     | Payload Byte 1A |  Payload Byte 1B       |  Payload Byte 2A |  Payload Byte 2B       |...|  Payload Byte 8A |  Payload Byte 8B       |
 
-##### 3.2.3.1.1 Payload Number of Bytes
+#### 3.2.3.1.1 Payload Number of Bytes
 
 Number of payload bytes in the frame.
 
-##### 3.2.3.1.2 Payload Byte xA
+#### 3.2.3.1.2 Payload Byte xA
 
 |Bits       | 0-1                                                                                        | 2-7                    |
 |-----------|--------------------------------------------------------------------------------------------|------------------------|
 |Function   |Thruster Direction                                                                          |Slave ID                |
 |Description|<pre> 0b00 = reverse <br> 0b01 = forward <br> 0b10 = invalid <br> 0b11 = invalid<br> </pre> | See Slave ID definition|
 
-##### 3.2.3.1.3 Payload Byte xB
+#### 3.2.3.1.3 Payload Byte xB
 
 |Bits       |0-7                    |
 |-----------|-----------------------|
@@ -235,8 +235,10 @@ Number of payload bytes in the frame.
 
 Server Reponse to Client Requests
 
-| Slave ID | Function ID \(Function ID \| 0x80\) | Exception Code | CRC LSB | CRC MSB |
-|----------|-------------------------------------|----------------|---------|---------|
+| Byte \# |     1     |     2                               |   3            |   4     |     5   |
+|---------|-----------|-------------------------------------|----------------|---------|---------|
+|Name     | Slave ID  | Function ID \(Function ID \| 0x80\) | Exception Code | CRC LSB | CRC MSB |
+
 
 !!! NOTE 
      The function codes for exception frames are Boolean OR with 0x80 and standard function codes
@@ -286,15 +288,15 @@ Server Reponse to Client Requests
 
 A unique 8-bit identifier used in response from Server to Client indicating success or error details.
 
-| Description          | Exception Code     |
-|----------------------|--------------------|
-| Illegal Function     | 0x01               |
-| Illegal Data Address | 0x02               |
-| Illegal Data Value   | 0x03               |
-| Server failure       | 0x04               |
-| ACK                  | 0x05               |
-| Server Busy          | 0x06               |
-| NACK                 | 0x07               |
+| Title		           | Exception Code     | Description                                                                                   |
+|----------------------|--------------------|-----------------------------------------------------------------------------------------------|
+| Illegal Function     | 0x01               | The Server does not support requested function                                                |
+| Illegal Data Address | 0x02               | The data address not valid for requested operation                                            |
+| Illegal Data Value   | 0x03               | The data value not valid for requested operation                                              |
+| Server Failure       | 0x04               | An unrecoverable failure occured while performing requested operation                         |
+| ACK                  | 0x05               | The Server has accepted the request, some duration of time should be expected before complete |
+| Server Busy          | 0x06               | The Server is currently busy processing a prior request                                       |
+| NACK                 | 0x07               | The Server cannot perform the requested operation                                             |
 
 ## 5 Example Message Exchanges
 

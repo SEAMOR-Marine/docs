@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Sturgeon 200 API - Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Sturgeon 200 API";
+        var mkdocs_page_input_path = "Sturgeon_200_API.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Sturgeon 200 API</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-introduction">1. Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#11-node-types">1.1 Node Types</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#111-client">1.1.1 Client</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#111-server">1.1.1 Server</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-network-requirements">2. Network Requirements</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#21-communication-port-settings">2.1 Communication Port settings</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#22-message-gap">2.2 Message Gap</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#23-timeout">2.3 Timeout</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-message-types">3. Message Types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#31-request-response">3.1 Request/ Response</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#311-frame-layouts">3.1.1 Frame Layouts</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#312-byte-definitions">3.1.2 Byte Definitions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3121-slave-id">3.1.2.1 Slave ID</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3122-function-id">3.1.2.2 Function ID</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3123-register-address">3.1.2.3 Register Address</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3124-number-of-registers">3.1.2.4 Number Of Registers</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3125-number-of-bytes-read">3.1.2.5 Number of Bytes Read</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3126-data">3.1.2.6 Data</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3127-crc">3.1.2.7 CRC</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#32-client-broadcast">3.2 Client Broadcast</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#321-frame-layout">3.2.1 Frame Layout</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#322-byte-definitions">3.2.2 Byte Definitions</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3221-slave-id">3.2.2.1 Slave ID</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3222-function-id">3.2.2.2 Function ID</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3223-register-address">3.2.2.3 Register Address</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3224-broadcast-id">3.2.2.4 Broadcast ID</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3225-data-payload">3.2.2.5 Data Payload</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#3226-crc">3.2.2.6 CRC</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#323-broadcast-payload-structure">3.2.3 Broadcast Payload Structure</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#33-exception-responses">3.3 Exception Responses</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-register-addresses">4 Register Addresses</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#41-readwrite-registers">4.1 Read/Write Registers</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#42-read-only-register-addresses">4.2 Read-Only Register Addresses</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#43-exception-response-codes">4.3 Exception Response Codes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-example-message-exchanges">5 Example Message Exchanges</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#51-read-request-example-1">5.1 Read Request - Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#52-read-request-example-2">5.2 Read Request - Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#53-read-request-example-3">5.3 Read Request - Example 3</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#54-write-request-example-1">5.4 Write Request - Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#55-write-request-example-2">5.5 Write Request - Example 2</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#56-broadcast-example-1">5.6 Broadcast - Example 1</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#57-exception-response-example-1">5.7 Exception Response - Example 1</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Sturgeon 200 API</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!--Sturgeon 200 API-->
+
+<p><img alt="SEAMOR" src="../img/Seamor_Logo-01_RGB_Colour-3200px.png" /></p>
+<h1 id="sturgeon-200-thruster-api">Sturgeon 200 Thruster API</h1>
+<p><em>Revision 1.1</em></p>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>This document outlines communication requirements for use of SEAMOR Sturgeon 200 Thruster. </p>
+<p>This communication protocol is based on MODBUS over RS-485. MODBUS based debugging tools and resources can be used for testing and validation, but no guarantee is made by SEAMOR for full compatibility with existing MODBUS devices or libraries.
+Terminology consistent with MODBUS standards is used throughout this document. Please refer to https://www.modbus.org/specs.php for more details.</p>
+<h3 id="11-node-types">1.1 Node Types</h3>
+<h4 id="111-client">1.1.1 Client</h4>
+<p>The client is the network device that initiates all communication, typically a processor that will also communicate on other networks. </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Only one Client is allowed per network</p>
+</div>
+<!-- blank line between Important and note-->
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Client is referred to as Master in Legacy MODBUS documentation</p>
+</div>
+<h4 id="111-server">1.1.1 Server</h4>
+<p>A Server is a network device that responds to requests from a Client. Typically end node devices on the network.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Maximum 63 Servers on a network</p>
+</div>
+<!-- blank line between Important and note-->
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Server is referred to as Slave in Legacy MODBUS documentation. Slave ID is used in this document to identify Servers. </p>
+</div>
+<h2 id="2-network-requirements">2. Network Requirements</h2>
+<h3 id="21-communication-port-settings">2.1 Communication Port settings</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Baud Rate</td>
+<td>115200</td>
+</tr>
+<tr>
+<td>Start Bit</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Stop Bit</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Parity Bit</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-message-gap">2.2  Message Gap</h3>
+<p>Minimum 20 ms required between messages on the network (received or transmitted).</p>
+<h3 id="23-timeout">2.3 Timeout</h3>
+<p>Any controllable action (eg. thruster rotation) will be maintained for a maximum of 1 second after successful message receipt. After timeout expiry the device will stop actions until the next valid command is recieved.</p>
+<h2 id="3-message-types">3. Message Types</h2>
+<h3 id="31-request-response">3.1 Request/ Response</h3>
+<p><img alt="Request-Response" src="../img/Request-Response.png" /></p>
+<h4 id="311-frame-layouts">3.1.1 Frame Layouts</h4>
+<h5 id="3111-client-read-request">3.1.1.1 Client - Read Request</h5>
+<table>
+<thead>
+<tr>
+<th>Byte #</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Slave ID</td>
+<td>Function ID</td>
+<td>Register Address MSB</td>
+<td>Register Address LSB</td>
+<td># Registers MSB</td>
+<td># Registers LSB</td>
+<td>CRC LSB</td>
+<td>CRC MSB</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3112-server-read-reponse">3.1.1.2 Server - Read Reponse</h5>
+<table>
+<thead>
+<tr>
+<th>Byte #</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>...</th>
+<th><em>n-1</em></th>
+<th><strong>n</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Slave ID</td>
+<td>Function ID</td>
+<td># Bytes Read</td>
+<td>Data MSB <em>x</em></td>
+<td>Data LSB <em>x</em></td>
+<td>...</td>
+<td>CRC LSB</td>
+<td>CRC MSB</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3113-client-write-request">3.1.1.3 Client - Write Request</h5>
+<table>
+<thead>
+<tr>
+<th>Byte #</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Slave ID</td>
+<td>Function ID</td>
+<td>Register Address MSB</td>
+<td>Register Address LSB</td>
+<td>Data MSB</td>
+<td>Data LSB</td>
+<td>CRC LSB</td>
+<td>CRC MSB</td>
+</tr>
+</tbody>
+</table>
+<h5 id="3114-server-write-response">3.1.1.4 Server - Write Response</h5>
+<table>
+<thead>
+<tr>
+<th>Byte #</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Slave ID</td>
+<td>Function ID</td>
+<td>Register Address MSB</td>
+<td>Register Address LSB</td>
+<td>Data MSB</td>
+<td>Data LSB</td>
+<td>CRC LSB</td>
+<td>CRC MSB</td>
+</tr>
+</tbody>
+</table>
+<h4 id="312-byte-definitions">3.1.2 Byte Definitions</h4>
+<h4 id="3121-slave-id">3.1.2.1 Slave ID</h4>
+<p>The unique 8-bit identifier for individual Servers. The configured device identifier valid in range of 0x01-0x3F (0x40-0xFE invalid, 0xFF indicates unconfigured).</p>
+<p>Slave ID 0x00 is reserved to indicate Broadcast Message (See Client Broadcast Definition). </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The default Slave ID is 0xFF before receiving a Write Request setting the Slave ID. </p>
+</div>
+<h4 id="3122-function-id">3.1.2.2 Function ID</h4>
+<p>The unique 8-bit identifier to represent operation requested of the Server. </p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>ID code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read Read/Write Register</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Read Read-only Register</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>Write Read/Write Register</td>
+<td>0x06</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Other MODBUS Function IDs are not supported.</p>
+</div>
+<h4 id="3123-register-address">3.1.2.3 Register Address</h4>
+<p>The 16-bit register address for target operation, offset from database start register. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).</p>
+<h4 id="3124-number-of-registers">3.1.2.4 Number Of Registers</h4>
+<p>The 16-bit value representing the number of registers in read request operation. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).</p>
+<h4 id="3125-number-of-bytes-read">3.1.2.5 Number of Bytes Read</h4>
+<p>The 8-bit value representing number of bytes returned.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each register contains 2 bytes</p>
+</div>
+<h4 id="3126-data">3.1.2.6 Data</h4>
+<p>The 16-bit contents read from, or to be writtten into, target register. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Read requests of greater than 1 register start at requested address</p>
+</div>
+<h4 id="3127-crc">3.1.2.7 CRC</h4>
+<p>The 16-bit Cyclic Redundancy Check (CRC) value of frame. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).</p>
+<p>Standard MODBUS CRC-16-ANSI (CRC-16-IBM) is used with algebraic polynomial 0xA001 (reverse of 0x8005). </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Sent in standard MODBUS little-endian format (CRC LSB first, CRC MSB second)</p>
+</div>
+<h3 id="32-client-broadcast">3.2 Client Broadcast</h3>
+<p><img alt="Broadcast" src="../img/Broadcast.png" /></p>
+<p>Broadcast Messaging allows for simultaneous communication with all Servers on the network.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Servers do not respond to Broadcast Messages</p>
+</div>
+<!--blank space to ensure break between note and important-->
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The maximum Broadcast Message length is 24 bytes</p>
+</div>
+<h4 id="321-frame-layout">3.2.1 Frame Layout</h4>
+<table>
+<thead>
+<tr>
+<th>Byte #</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6-22</th>
+<th>n-1</th>
+<th>n</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Slave  ID</td>
+<td>Function ID</td>
+<td>Register Address MSB</td>
+<td>Register Address LSB</td>
+<td>Broadcast ID</td>
+<td>Data Payload</td>
+<td>CRC LSB</td>
+<td>CRC MSB</td>
+</tr>
+</tbody>
+</table>
+<h4 id="322-byte-definitions">3.2.2 Byte Definitions</h4>
+<h4 id="3221-slave-id">3.2.2.1 Slave ID</h4>
+<p>The unique 8-bit identifier for individual Servers, configured device identifier valid in range of 0x01-0x3F (0x40-0xFE invalid, 0xFF indicates unconfigured).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Byte 1 in the frame is Slave ID 0x00 indicating a Broadcast Message, all other Slave ID used in frame refer to specific Server</p>
+</div>
+<h4 id="3222-function-id">3.2.2.2 Function ID</h4>
+<p>The unique 8-bit identifier to represent operation requested of the Server. </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Only supported Broadcast Message function code is Write Read/Write Register: 0x06</p>
+</div>
+<h4 id="3223-register-address">3.2.2.3 Register Address</h4>
+<p>The 16-bit register address for target operation, offset from the database start register. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).</p>
+<h4 id="3224-broadcast-id">3.2.2.4 Broadcast ID</h4>
+<p>The unique 8-bit identifier to indicate frame structure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently only Broadcast ID 0x01 is supported</p>
+</div>
+<h4 id="3225-data-payload">3.2.2.5 Data Payload</h4>
+<p>The number of bytes and function specific to Broadcast ID (See Broadcast Payload Structure Definition)</p>
+<h4 id="3226-crc">3.2.2.6 CRC</h4>
+<p>The 16-bit Cyclic Redundancy Check (CRC) value of frame. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB). </p>
+<p>Standard MODBUS CRC-16-ANSI (CRC-16-IBM) is used with algebraic polynomial 0xA001 (reverse of 0x8005). </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Sent in standard MODBUS little-endian format (CRC LSB first, CRC MSB second)</p>
+</div>
+<h4 id="323-broadcast-payload-structure">3.2.3 Broadcast Payload Structure</h4>
+<h5 id="3231-broadcast-id-0x01">3.2.3.1 Broadcast ID 0x01</h5>
+<p>Used to broadcast direction and duty cycle to multiple Servers. Valid for 1-8 Servers simultaneously (maximum data payload 3-17 bytes). </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Variable frame lengths are supported</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Data Payload Byte #</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>...</th>
+<th>16</th>
+<th>17</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Payload # Bytes</td>
+<td>Payload Byte 1A</td>
+<td>Payload Byte 1B</td>
+<td>Payload Byte 2A</td>
+<td>Payload Byte 2B</td>
+<td>...</td>
+<td>Payload Byte 8A</td>
+<td>Payload Byte 8B</td>
+</tr>
+</tbody>
+</table>
+<h5 id="32311-payload-number-of-bytes">3.2.3.1.1 Payload Number of Bytes</h5>
+<p>Number of payload bytes in the frame.</p>
+<h5 id="32312-payload-byte-xa">3.2.3.1.2 Payload Byte xA</h5>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>0-1</th>
+<th>2-7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Function</td>
+<td>Thruster Direction</td>
+<td>Slave ID</td>
+</tr>
+<tr>
+<td>Description</td>
+<td><pre> 0b00 = reverse <br> 0b01 = forward <br> 0b10 = invalid <br> 0b11 = invalid<br> </pre></td>
+<td>See Slave ID definition</td>
+</tr>
+</tbody>
+</table>
+<h5 id="32313-payload-byte-xb">3.2.3.1.3 Payload Byte xB</h5>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>0-7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Function</td>
+<td>Thruster Duty Cycle</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>0.5% / bit</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Maximum Thruster Duty Cycle is 100% (0xC8)</p>
+</div>
+<h3 id="33-exception-responses">3.3 Exception Responses</h3>
+<p>Server Reponse to Client Requests</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID (Function ID | 0x80)</th>
+<th>Exception Code</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The function codes for exception frames are Boolean OR with 0x80 and standard function codes</p>
+</div>
+<h2 id="4-register-addresses">4 Register Addresses</h2>
+<h3 id="41-readwrite-registers">4.1 Read/Write Registers</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Offset</th>
+<th>Byte</th>
+<th>Bit Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>40001</td>
+<td>0</td>
+<td>LSB</td>
+<td>Slave ID</td>
+<td>Unique Server Identifier</td>
+</tr>
+<tr>
+<td>40001</td>
+<td>0</td>
+<td>MSB</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+<tr>
+<td>40002</td>
+<td>1</td>
+<td>LSB</td>
+<td>Thruster Orientation</td>
+<td><pre> 0x00:Left hand propeller (forward = counter-clockwise) <br> 0x01:Right hand propeller (forward = clockwise)  <br> 0x02 - 0xFF :  Invalid  </pre></td>
+</tr>
+<tr>
+<td>40002</td>
+<td>1</td>
+<td>MSB</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+<tr>
+<td>40003</td>
+<td>2</td>
+<td>LSB</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+<tr>
+<td>40003</td>
+<td>2</td>
+<td>MSB</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+<tr>
+<td>40004</td>
+<td>3</td>
+<td>LSB</td>
+<td>Thruster Duty Cycle</td>
+<td>0.5% / bit</td>
+</tr>
+<tr>
+<td>40004</td>
+<td>3</td>
+<td>MSB</td>
+<td>Thruster Direction</td>
+<td>1 = forward,  0 = reverse</td>
+</tr>
+<tr>
+<td>40005</td>
+<td>4</td>
+<td>LSB</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+<tr>
+<td>40005</td>
+<td>4</td>
+<td>MSB</td>
+<td>N/A</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The propellor rotation direction reference from nozzle end of thruster</p>
+</div>
+<p><img alt="Orientation" src="../img/Orientation.png" /></p>
+<p align="center">
+<i>Clockwise Rotation</i>
+</p>
+
+<h3 id="42-read-only-register-addresses">4.2 Read-Only Register Addresses</h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Offset</th>
+<th>Byte</th>
+<th>Name</th>
+<th>Bit Resolution</th>
+<th>Offset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30001</td>
+<td>0</td>
+<td>LSB</td>
+<td>N/A</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>30001</td>
+<td>0</td>
+<td>MSB</td>
+<td>Peripheral ID</td>
+<td>-</td>
+<td>-</td>
+<td>Unique Identifier for Device Type</td>
+</tr>
+<tr>
+<td>30002</td>
+<td>1</td>
+<td>LSB</td>
+<td>N/A</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>30002</td>
+<td>1</td>
+<td>MSB</td>
+<td>N/A</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>30003</td>
+<td>2</td>
+<td>LSB</td>
+<td>Voltage</td>
+<td>0.25 V/bit</td>
+<td>0</td>
+<td>Measured Input Voltage</td>
+</tr>
+<tr>
+<td>30003</td>
+<td>2</td>
+<td>MSB</td>
+<td>Current</td>
+<td>0.05 A/bit</td>
+<td>0</td>
+<td>Measured Current Consumption</td>
+</tr>
+<tr>
+<td>30004</td>
+<td>3</td>
+<td>LSB</td>
+<td>Internal Temperature</td>
+<td>1 °C/bit</td>
+<td>-50 °C</td>
+<td>Motor Driver Internal Temperature</td>
+</tr>
+<tr>
+<td>30004</td>
+<td>3</td>
+<td>MSB</td>
+<td>N/A</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>30005</td>
+<td>4</td>
+<td>LSB</td>
+<td>N/A</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>30005</td>
+<td>4</td>
+<td>MSB</td>
+<td>N/A</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-exception-response-codes">4.3 Exception Response Codes</h3>
+<p>A unique 8-bit identifier used in response from Server to Client indicating success or error details.</p>
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Exception Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Illegal Function</td>
+<td>0x01</td>
+</tr>
+<tr>
+<td>Illegal Data Address</td>
+<td>0x02</td>
+</tr>
+<tr>
+<td>Illegal Data Value</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>Server failure</td>
+<td>0x04</td>
+</tr>
+<tr>
+<td>ACK</td>
+<td>0x05</td>
+</tr>
+<tr>
+<td>Server Busy</td>
+<td>0x06</td>
+</tr>
+<tr>
+<td>NACK</td>
+<td>0x07</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-example-message-exchanges">5 Example Message Exchanges</h2>
+<h3 id="51-read-request-example-1">5.1 Read Request - Example 1</h3>
+<p>Read Request for Voltage and Current from Slave ID 16:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th># Registers MSB</th>
+<th># Registers LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x04</td>
+<td>0x00</td>
+<td>0x02</td>
+<td>0x00</td>
+<td>0x01</td>
+<td>0x93</td>
+<td>0x4B</td>
+</tr>
+</tbody>
+</table>
+<p>Response from Server to the Client:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th># Bytes Read</th>
+<th>Data MSB</th>
+<th>Data LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x04</td>
+<td>0x02</td>
+<td>0x04</td>
+<td>0x40</td>
+<td>0x46</td>
+<td>0x03</td>
+</tr>
+</tbody>
+</table>
+<p>Slave ID 16 responds current 0.2A and volatge 16V.</p>
+<h3 id="52-read-request-example-2">5.2 Read Request - Example 2</h3>
+<p>Read Request for Duty Cycle and Direction from Slave ID 16:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th># Registers MSB</th>
+<th># Registers LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x03</td>
+<td>0x00</td>
+<td>0x03</td>
+<td>0x00</td>
+<td>0x01</td>
+<td>0x77</td>
+<td>0x4B</td>
+</tr>
+</tbody>
+</table>
+<p>Response from Server to the Client:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th># Bytes Read</th>
+<th>Data MSB</th>
+<th>Data LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x03</td>
+<td>0x02</td>
+<td>0x01</td>
+<td>0x64</td>
+<td>0x44</td>
+<td>0x3C</td>
+</tr>
+</tbody>
+</table>
+<p>Slave ID 16 responds Duty cycle 50% in the forward direction.</p>
+<h3 id="53-read-request-example-3">5.3 Read Request - Example 3</h3>
+<p>Read multiple registers, Slave ID and Thruster orientation from Slave ID 16:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th># Registers MSB</th>
+<th># Registers LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x03</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x02</td>
+<td>0xC7</td>
+<td>0x4A</td>
+</tr>
+</tbody>
+</table>
+<p>Response from Server to the Client:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th># Bytes Read</th>
+<th>Data MSB 1</th>
+<th>Data LSB  1</th>
+<th>Data MSB 2</th>
+<th>Data LSB  2</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x03</td>
+<td>0x04</td>
+<td>0x00</td>
+<td>0x10</td>
+<td>0x00</td>
+<td>0x01</td>
+<td>0x3B</td>
+<td>0x37</td>
+</tr>
+</tbody>
+</table>
+<p>Slave ID 16 responds with its configured Slave ID 16 and orientation 0x01: Right hand propeller.</p>
+<h3 id="54-write-request-example-1">5.4 Write Request  - Example 1</h3>
+<p>Write request to Slave ID 220 for Duty cycle to 100% and direction to forward:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th>Data MSB</th>
+<th>Data LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xDC</td>
+<td>0x06</td>
+<td>0x00</td>
+<td>0x03</td>
+<td>0x01</td>
+<td>0xC8</td>
+<td>0x6B</td>
+<td>0x41</td>
+</tr>
+</tbody>
+</table>
+<p>Response from Server to the Client:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th>Data MSB</th>
+<th>Data LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xDC</td>
+<td>0x06</td>
+<td>0x00</td>
+<td>0x03</td>
+<td>0x01</td>
+<td>0xC8</td>
+<td>0x6B</td>
+<td>0x41</td>
+</tr>
+</tbody>
+</table>
+<p>Slave ID 220 responds Duty cycle 100% in the forward direction.</p>
+<h3 id="55-write-request-example-2">5.5 Write Request  - Example 2</h3>
+<p>Write request to unconfigured Server (Slave ID 0xFF) with target Slave ID 2:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th>Data MSB</th>
+<th>Data LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xFF</td>
+<td>0x06</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x02</td>
+<td>0x1D</td>
+<td>0xD5</td>
+</tr>
+</tbody>
+</table>
+<p>Response from Server to the Client:</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th>Data MSB</th>
+<th>Data LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x02</td>
+<td>0x06</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x02</td>
+<td>0x08</td>
+<td>0x38</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Server responds to write request for target Slave ID using updated Slave ID</p>
+</div>
+<h3 id="56-broadcast-example-1">5.6 Broadcast - Example 1</h3>
+<p>Write Duty Cycle and Direction to following Servers:</p>
+<table>
+<thead>
+<tr>
+<th>Slave  ID</th>
+<th>Direction</th>
+<th>Duty Cycle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Reverse</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Reverse</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Reverse</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Reverse</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Forward</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Forward</td>
+<td>50%</td>
+</tr>
+</tbody>
+</table>
+<p>Example Payload 1A:</p>
+<table>
+<thead>
+<tr>
+<th>Bits</th>
+<th>0-1</th>
+<th>2-7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Description</td>
+<td>Thruster Direction</td>
+<td>Slave ID</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>0b00</td>
+<td>0b01</td>
+</tr>
+</tbody>
+</table>
+<p>Resulting in 0b00000100 (0x04)</p>
+<p>Broadcast Message:</p>
+<table>
+<thead>
+<tr>
+<th>Slave  ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th>Broadcast ID</th>
+<th>Payload # Bytes</th>
+<th>Payload 1A</th>
+<th>Payload 1B</th>
+<th>Payload 2A</th>
+<th>Payload 2B</th>
+<th>Payload 3A</th>
+<th>Payload 3B</th>
+<th>Payload 4A</th>
+<th>Payload 4B</th>
+<th>Payload 5A</th>
+<th>Payload 5B</th>
+<th>Payload 6A</th>
+<th>Payload 6B</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00</td>
+<td>0x06</td>
+<td>0x00</td>
+<td>0x03</td>
+<td>0x01</td>
+<td>0x0C</td>
+<td>0x04</td>
+<td>0xC8</td>
+<td>0x08</td>
+<td>0xC8</td>
+<td>0x0C</td>
+<td>0xC8</td>
+<td>0x10</td>
+<td>0xC8</td>
+<td>0x15</td>
+<td>0x64</td>
+<td>0x19</td>
+<td>0x64</td>
+<td>0xB4</td>
+<td>0xBB</td>
+</tr>
+</tbody>
+</table>
+<p>No network response from Servers.</p>
+<h3 id="57-exception-response-example-1">5.7 Exception Response - Example 1</h3>
+<p>The Client is requesting to read register address 0x00A0 of the Server with Slave ID 220.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Register address 0x00A0 is invalid</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID</th>
+<th>Register Address MSB</th>
+<th>Register Address LSB</th>
+<th># Registers MSB</th>
+<th># Registers LSB</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xDC</td>
+<td>0x03</td>
+<td>0x00</td>
+<td>0xA0</td>
+<td>0x00</td>
+<td>0x03</td>
+<td>0x17</td>
+<td>0x64</td>
+</tr>
+</tbody>
+</table>
+<p>Response from Server to the Client</p>
+<table>
+<thead>
+<tr>
+<th>Slave ID</th>
+<th>Function ID (Function ID | 0x80)</th>
+<th>Exception Code</th>
+<th>CRC LSB</th>
+<th>CRC MSB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xDC</td>
+<td>0x83</td>
+<td>0x02</td>
+<td>0x50</td>
+<td>0xCB</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This assumes the message is recieved and passes CRC validation. The exception response indicates the data address range is invalid.</p>
+</div>
+<p align="center">
+   <br>
+    &copy; 2025 SEAMOR Marine Ltd.
+</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
