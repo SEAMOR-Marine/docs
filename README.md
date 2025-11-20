@@ -4,4 +4,4 @@ Documentation Database
 
 based on [Material for Mkdocs](https://github.com/squidfunk/mkdocs-material)
 
-[https://seamor-marine.github.io/](https://seamor-marine.github.io/)
+[https://seamor-marine.github.io/docs/](https://seamor-marine.github.io/docs/)
