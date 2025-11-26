@@ -3,7 +3,7 @@
 
 ![SEAMOR](img/Seamor_Logo-01_RGB_KO-3200px.png)
 
-# SSerial Gripper Thruster API
+# Serial Gripper Thruster API
 _Revision 1.1_
 
 
@@ -350,13 +350,13 @@ Write request to Slave ID 220 for Rotate Motor State to Idle and Open/Close Moto
 
 | Slave ID | Function ID | Register Address MSB | Register Address LSB | Data MSB | Data LSB | CRC LSB | CRC MSB |
 |----------|-------------|----------------------|----------------------|----------|----------|---------|---------|
-| 0xDC     | 0x06        | 0x00                 | 0x03                 | 0x02     | 0x00     | 0x6B    | 0x41    |
+| 0xDC     | 0x06        | 0x00                 | 0x03                 | 0x02     | 0x00     | 0x6A    | 0x27    |
 
 Response from Server to the Client:
 
 | Slave ID | Function ID | Register Address MSB | Register Address LSB | Data MSB | Data LSB | CRC LSB | CRC MSB |
 |----------|-------------|----------------------|----------------------|----------|----------|---------|---------|
-| 0xDC     | 0x06        | 0x00                 | 0x03                 | 0x02     | 0x00     | 0x6B    | 0x41    |
+| 0xDC     | 0x06        | 0x00                 | 0x03                 | 0x02     | 0x00     | 0x6A    | 0x27    |
 
 Slave ID 220 responds Rotate Motor State in Idle and Open/Close Motor State in Close.
 
@@ -403,7 +403,7 @@ Broadcast Message:
 
 | Slave  ID | Function ID | Register Address MSB | Register Address LSB | Broadcast ID | Payload # Bytes   | Payload 1A | Payload 1B | Payload 2A| Payload 2B | Payload 3A| Payload 3B | Payload 4A| Payload 4B | Payload 5A| Payload 5B | Payload 6A| Payload 6B | CRC LSB   | CRC MSB |
 |-----------|-------------|----------------------|----------------------|--------------|-------------------|------------|------------|-----------|------------|-----------|------------|-----------|------------|-----------|------------|-----------|------------|-----------|---------|
-| 0x00      |   0x06      |     0x00             |     0x03             |   0x03       |      0x0C         |    0x05    |    0x00    |    0x0A   |    0x02    |    0x0C   |    0x01    |    0x12   |    0x00    |    0x15   |    0x01    |    0x18   |    0x02    |    0xA4   |   0x9C  |
+| 0x00      |   0x06      |     0x00             |     0x03             |   0x03       |      0x0C         |    0x05    |    0x00    |    0x0A   |    0x02    |    0x0C   |    0x01    |    0x12   |    0x00    |    0x15   |    0x01    |    0x18   |    0x02    |    0x3B   |   0x2D  |
 
  No network response from Servers.
 
