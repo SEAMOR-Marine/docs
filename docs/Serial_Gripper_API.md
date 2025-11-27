@@ -241,11 +241,11 @@ Server Reponse to Client Requests
 
 ### 4.1 Read/Write Registers
 
-| Address  	   | Offset     | Byte     |     Bit Name              |   Description                                                                                                                                        |
+| Address  	   | Offset     | Byte     |     Bit Name              |   Description                                                                                                                                            |
 |--------------|------------|----------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 40001        | 0          | LSB      | Slave ID                  | Unique Server Identifier                                                                                                                                      |
+| 40001        | 0          | LSB      | Slave ID                  | Unique Server Identifier                                                                                                                                             |
 | 40001        | 0          | MSB      | N/A                       | -                                                                                                                                                      |
-| 40002        | 1          | LSB      | N/A                       | <pre> 0x00:Left hand propeller (forward = counter-clockwise) <br> 0x01:Right hand propeller (forward = clockwise)	<br> 0x02 - 0xFF :	Invalid	 </pre> |
+| 40002        | 1          | LSB      | N/A                       |                                                                                   |
 | 40002        | 1          | MSB      | N/A                       | -                                                                                                                                                      |
 | 40003        | 2          | LSB      | N/A                       | -                                                                                                                                                      |
 | 40003        | 2          | MSB      | N/A                       | -                                                                                                                                                      |
@@ -326,7 +326,7 @@ Response from Server to the Client:
 
 Slave ID 16 responds Open/Close Motor State is close and Rotate State is idle.
 
-
+<!--
 ### 5.3	Read Request - Example 3
 
 Read multiple registers, Slave ID and Thruster orientation from Slave ID 16:
@@ -343,6 +343,7 @@ Response from Server to the Client:
 
 Slave ID 16 responds with its configured Slave ID 16 and orientation 0x01: Right hand propeller.
 
+-->
  
 ### 5.4 Write Request  - Example 1
 
