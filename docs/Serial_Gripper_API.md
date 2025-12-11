@@ -1,9 +1,9 @@
-<!--Sturgeon 200 API-->
+<!--Serial Gripper API-->
 
 
 ![SEAMOR](img/Seamor_Logo-01_RGB_KO-3200px.png)
 
-# Serial Gripper Thruster API
+# Serial Gripper API
 _Revision 1.1_
 
 
@@ -255,9 +255,9 @@ Server Reponse to Client Requests
 | 40005        | 4          | MSB      | N/A                       | -                                                                                                                                                      |
 
 !!! NOTE 
-     The propellor rotation direction reference from nozzle end of thruster
+     The gripper rotation direction reference from wip end of the gripper
 
-![Orientation](img/Orientation.png)
+![Gripper](img/Gripper.jpg)
 <p align="center">
 <i>Clockwise Rotation</i>
 </p>
@@ -305,9 +305,9 @@ Response from Server to the Client:
 
 | Slave ID  | Function ID  | # Bytes Read |   Data MSB    |   Data LSB    | CRC LSB | CRC MSB |
 |-----------|--------------|--------------|---------------|---------------|---------|---------|
-| 0x10      | 0x04         | 0x02         | 0x49          | 0x40          | 0x73    | 0x53    |
+| 0x10      | 0x04         | 0x02         | 0x49          | 0xC0          | 0x72    | 0xF3    |
 
-Slave ID 16 responds temperature 23°C and voltage 16V.
+Slave ID 16 responds temperature 23°C and voltage 48V.
 
 
 ### 5.2	Read Request - Example 2
@@ -326,40 +326,40 @@ Response from Server to the Client:
 
 Slave ID 16 responds Open/Close Motor State is close and Rotate State is idle.
 
-<!--
+
 ### 5.3	Read Request - Example 3
 
-Read multiple registers, Slave ID and Thruster orientation from Slave ID 16:
+Read multiple registers, both current measurments, voltage, and temperature from Slave ID 16:
 
 | Slave ID | Function ID | Register Address MSB | Register Address LSB | # Registers MSB | # Registers LSB | CRC LSB | CRC MSB |
 |----------|-------------|----------------------|----------------------|-----------------|-----------------|---------|---------|
-| 0x10     | 0x03        | 0x00                 | 0x00                 | 0x00            | 0x02            | 0xC7    | 0x4A    |
+| 0x10     | 0x04        | 0x00                 | 0x02                 | 0x00            | 0x02            | 0xD3    | 0x4A    |
 
 Response from Server to the Client:
 
 | Slave ID | Function ID | # Bytes Read      |   Data MSB 1    |   Data LSB  1   |   Data MSB 2    |   Data LSB  2   | CRC LSB | CRC MSB |
 |----------|-------------|-------------------|-----------------|-----------------|-----------------|-----------------|---------|---------|
-| 0x10     | 0x03        | 0x04              | 0x00            | 0x10            | 0x00            | 0x01            | 0x3B    | 0x37    |
+| 0x10     | 0x04        | 0x04              | 0x0A            | 0x00            | 0x49            | 0x60            | 0xCE    | 0xE5    |
 
-Slave ID 16 responds with its configured Slave ID 16 and orientation 0x01: Right hand propeller.
+Slave ID 16 responds open/close current is 100mA, rotate current 0mA, temperature 23°C and voltage 24V.
 
--->
+
  
 ### 5.4 Write Request  - Example 1
 
-Write request to Slave ID 220 for Rotate Motor State to Idle and Open/Close Motor State to Close:
+Write request to Slave ID 26 for Rotate Motor State to Idle and Open/Close Motor State to Close:
 
 | Slave ID | Function ID | Register Address MSB | Register Address LSB | Data MSB | Data LSB | CRC LSB | CRC MSB |
 |----------|-------------|----------------------|----------------------|----------|----------|---------|---------|
-| 0xDC     | 0x06        | 0x00                 | 0x03                 | 0x02     | 0x00     | 0x6A    | 0x27    |
+| 0x1A     | 0x06        | 0x00                 | 0x03                 | 0x02     | 0x00     | 0x6A    | 0x27    |
 
 Response from Server to the Client:
 
 | Slave ID | Function ID | Register Address MSB | Register Address LSB | Data MSB | Data LSB | CRC LSB | CRC MSB |
 |----------|-------------|----------------------|----------------------|----------|----------|---------|---------|
-| 0xDC     | 0x06        | 0x00                 | 0x03                 | 0x02     | 0x00     | 0x6A    | 0x27    |
+| 0x1A     | 0x06        | 0x00                 | 0x03                 | 0x02     | 0x00     | 0x6A    | 0x27    |
 
-Slave ID 220 responds Rotate Motor State in Idle and Open/Close Motor State in Close.
+Slave ID 26 responds Rotate Motor State in Idle and Open/Close Motor State in Close.
 
 ### 5.5 Write Request  - Example 2 
 
@@ -417,13 +417,13 @@ The Client is requesting to read register address 0x00A0 of the Server with Slav
 
 | Slave ID | Function ID | Register Address MSB | Register Address LSB  | # Registers MSB | # Registers LSB | CRC LSB | CRC MSB |
 |----------|-------------|----------------------|-----------------------|-----------------|-----------------|---------|---------|
-| 0xDC     | 0x03        | 0x00                 | 0xA0                  | 0x00            | 0x03            | 0x17    | 0x64    |
+| 0x1A     | 0x03        | 0x00                 | 0xA0                  | 0x00            | 0x03            | 0x06    | 0x02    |
 
 Response from Server to the Client
 
 | Slave ID | Function ID \(Function ID \| 0x80\) | Exception Code | CRC LSB | CRC MSB |
 |----------|-------------------------------------|----------------|---------|---------|
-| 0xDC     |                0x83                 | 0x02           | 0x50    | 0xCB    |
+| 0x1A     |                0x83                 | 0x02           | 0xB0    | 0xF6    |
 
 !!! NOTE 
      This assumes the message is recieved and passes CRC validation. The exception response indicates the data address range is invalid.
