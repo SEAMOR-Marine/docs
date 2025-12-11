@@ -4,7 +4,7 @@
 ![SEAMOR](img/Seamor_Logo-01_RGB_KO-3200px.png)
 
 # Serial Gripper API
-_Revision 1.1_
+_Revision 1.0_
 
 
 ## 1. Introduction
@@ -56,7 +56,7 @@ Minimum 20 ms required between messages on the network (received or transmitted)
 
 ### 2.3 Timeout
 
-Any controllable action (eg. gripper rotation) will be maintained for a maximum of 1 second after successful message receipt. After timeout expiry the device will stop actions until the next valid command is recieved.
+Any controllable action (eg. gripper rotation) will be maintained for a maximum of 1 second after successful message receipt. After timeout expiry the device will stop actions until the next valid command is received.
 
 ## 3. Message Types
 
@@ -72,7 +72,7 @@ Any controllable action (eg. gripper rotation) will be maintained for a maximum 
 
 
 
-##### 3.1.1.2 Server - Read Reponse
+##### 3.1.1.2 Server - Read Response
 |Byte #| 1        | 2           | 3            | 4             | 5             | ...| _n-1_   |  __n__  |
 |------|----------|-------------|--------------|---------------|---------------|----|---------|---------|
 |Name  | Slave ID | Function ID | # Bytes Read | Data MSB _x_  | Data LSB _x_  | ...| CRC LSB | CRC MSB |
@@ -127,7 +127,7 @@ The 8-bit value representing number of bytes returned.
 	Each register contains 2 bytes
 
 #### 3.1.2.6 Data
-The 16-bit contents read from, or to be writtten into, target register. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).
+The 16-bit contents read from, or to be written into, target register. Split into Most Significant Byte (MSB) and Least Significant Byte (LSB).
 
 !!! NOTE 
 	Read requests of greater than 1 register start at requested address
@@ -227,7 +227,7 @@ Number of payload bytes in the frame.
 
 ### 3.3 Exception Responses
 
-Server Reponse to Client Requests
+Server Response to Client Requests
 
 | Byte \# |     1     |     2                               |   3            |   4     |     5   |
 |---------|-----------|-------------------------------------|----------------|---------|---------|
@@ -266,8 +266,8 @@ Server Reponse to Client Requests
 
 | Address      | Offset     | Byte     | Name                      |     Bit Resolution |     Offset |     Description                            |
 |--------------|------------|----------|---------------------------|--------------------|------------|--------------------------------------------|
-| 30001        | 0          | LSB      | N/A                       | -                  | -          | -                                          |
-| 30001        | 0          | MSB      | Peripheral ID             | -                  | -          | Unique Identifier for Device Type          |
+| 30001        | 0          | LSB      | Peripheral ID             | -                  | -          | Unique Identifier for Device Type          |
+| 30001        | 0          | MSB      | N/A                       | -                  | -          | -                                          |
 | 30002        | 1          | LSB      | N/A                       | -                  | -          | -                                          |
 | 30002        | 1          | MSB      | N/A                       | -                  | -          | -                                          |
 | 30003        | 2          | LSB      | Rotate Motor Current      | 0\.01 A/bit        | 0          | Measured Rotate Motor Current              |
@@ -286,7 +286,7 @@ A unique 8-bit identifier used in response from Server to Client indicating succ
 | Illegal Function     | 0x01               | The Server does not support requested function                                                |
 | Illegal Data Address | 0x02               | The data address not valid for requested operation                                            |
 | Illegal Data Value   | 0x03               | The data value not valid for requested operation                                              |
-| Server Failure       | 0x04               | An unrecoverable failure occured while performing requested operation                         |
+| Server Failure       | 0x04               | An unrecoverable failure occurred while performing requested operation                         |
 | ACK                  | 0x05               | The Server has accepted the request, some duration of time should be expected before complete |
 | Server Busy          | 0x06               | The Server is currently busy processing a prior request                                       |
 | NACK                 | 0x07               | The Server cannot perform the requested operation                                             |
@@ -329,7 +329,7 @@ Slave ID 16 responds Open/Close Motor State is close and Rotate State is idle.
 
 ### 5.3	Read Request - Example 3
 
-Read multiple registers, both current measurments, voltage, and temperature from Slave ID 16:
+Read multiple registers, both currents, voltage, and temperature from Slave ID 16:
 
 | Slave ID | Function ID | Register Address MSB | Register Address LSB | # Registers MSB | # Registers LSB | CRC LSB | CRC MSB |
 |----------|-------------|----------------------|----------------------|-----------------|-----------------|---------|---------|
@@ -426,7 +426,7 @@ Response from Server to the Client
 | 0x1A     |                0x83                 | 0x02           | 0xB0    | 0xF6    |
 
 !!! NOTE 
-     This assumes the message is recieved and passes CRC validation. The exception response indicates the data address range is invalid.
+     This assumes the message is received and passes CRC validation. The exception response indicates the data address range is invalid.
 
 <p align="center">
    <br>
