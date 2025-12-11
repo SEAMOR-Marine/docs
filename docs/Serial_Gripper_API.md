@@ -222,7 +222,7 @@ Number of payload bytes in the frame.
 
 |Bits       | 0-1                                                                            | 2-7                    |
 |-----------|--------------------------------------------------------------------------------|------------------------|
-|Function   |Open/Close Motor State                                                          |Unused                  |
+|Function   |Rotate Motor State                                                              |Unused                  |
 |Description|<pre> 0b00 = Idle <br> 0b01 = CW <br> 0b10 = CCW <br> 0b11 = invalid<br> </pre> |                        |
 
 ### 3.3 Exception Responses
@@ -410,7 +410,7 @@ Broadcast Message:
 
 ### 5.7 Exception Response - Example 1
 
-The Client is requesting to read register address 0x00A0 of the Server with Slave ID 220.
+The Client is requesting to read register address 0x00A0 of the Server with Slave ID 26.
 
 !!! Warning 
 	Register address 0x00A0 is invalid
