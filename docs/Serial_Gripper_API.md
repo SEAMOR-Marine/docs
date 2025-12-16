@@ -43,9 +43,9 @@ A Server is a network device that responds to requests from a Client. Typically 
 
 ### 2.1 Communication Port settings
 
-|  Setting        | Value       |
+| Setting         | Value       |
 |-----------------|-------------|
-| Baud Rate       |   115200	|
+| Baud Rate       | 115200	    |
 | Start Bit       | 1			|
 | Stop Bit        | 1        	|
 | Parity Bit      | None     	|
@@ -241,18 +241,18 @@ Server Response to Client Requests
 
 ### 4.1 Read/Write Registers
 
-| Address  	   | Offset     | Byte     |     Bit Name              |   Description                                                                                                                                            |
-|--------------|------------|----------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 40001        | 0          | LSB      | Slave ID                  | Unique Server Identifier                                                                                                                                             |
-| 40001        | 0          | MSB      | N/A                       | -                                                                                                                                                      |
-| 40002        | 1          | LSB      | N/A                       |                                                                                   |
-| 40002        | 1          | MSB      | N/A                       | -                                                                                                                                                      |
-| 40003        | 2          | LSB      | N/A                       | -                                                                                                                                                      |
-| 40003        | 2          | MSB      | N/A                       | -                                                                                                                                                      |
-| 40004        | 3          | LSB      | Rotate Motor State        | 0 = Idle,  1 = CW, 2 = CCW                                                                                                                                                                                                             |
-| 40004        | 3          | MSB      | Open/Close Motor State    | 0 = Idle,  1 = Open, 2 = Close                                                                                                                               |
-| 40005        | 4          | LSB      | N/A                       | -                                                                                                                                                      |
-| 40005        | 4          | MSB      | N/A                       | -                                                                                                                                                      |
+| Address  	   | Offset     | Byte     |     Bit Name              |   Description                                                      |
+|--------------|------------|----------|---------------------------|--------------------------------------------------------------------|
+| 40001        | 0          | LSB      | Slave ID                  | Unique Server Identifier                                           |
+| 40001        | 0          | MSB      | N/A                       | -                                                                  |
+| 40002        | 1          | LSB      | N/A                       |                                                                    |
+| 40002        | 1          | MSB      | N/A                       | -                                                                  |
+| 40003        | 2          | LSB      | N/A                       | -                                                                  |
+| 40003        | 2          | MSB      | N/A                       | -                                                                  |
+| 40004        | 3          | LSB      | Rotate Motor State        | 0 = Idle,  1 = CW, 2 = CCW                                         |
+| 40004        | 3          | MSB      | Open/Close Motor State    | 0 = Idle,  1 = Open, 2 = Close                                     |
+| 40005        | 4          | LSB      | N/A                       | -                                                                  |
+| 40005        | 4          | MSB      | N/A                       | -                                                                  |
 
 !!! NOTE 
      The gripper rotation direction reference from wip end of the gripper
@@ -286,7 +286,7 @@ A unique 8-bit identifier used in response from Server to Client indicating succ
 | Illegal Function     | 0x01               | The Server does not support requested function                                                |
 | Illegal Data Address | 0x02               | The data address not valid for requested operation                                            |
 | Illegal Data Value   | 0x03               | The data value not valid for requested operation                                              |
-| Server Failure       | 0x04               | An unrecoverable failure occurred while performing requested operation                         |
+| Server Failure       | 0x04               | An unrecoverable failure occurred while performing requested operation                        |
 | ACK                  | 0x05               | The Server has accepted the request, some duration of time should be expected before complete |
 | Server Busy          | 0x06               | The Server is currently busy processing a prior request                                       |
 | NACK                 | 0x07               | The Server cannot perform the requested operation                                             |
